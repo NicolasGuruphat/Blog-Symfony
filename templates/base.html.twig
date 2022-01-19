@@ -13,11 +13,32 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    
     <body>
+    <header style="
+    background-color:yellow;
+    ">
+    oui le header
+    </header>
+    <nav style="
+    float:left;
+    background-color:red;
+    ">
+        oui la nav
+    </nav>
+    <content style="
+    background-color:blue;
+    ">
+        Oscour
         {% block body %}{% endblock %}
-    </body>
-    <footer>
-        <h1>le footer</h1>
+    </content>
+    <footer style="
+   position:fixed;
+   text-align:center;
+   background-color:green;
+   bottom:0px;
+   z-index:1;
+   width:100%;">
+        Blog réalisé par : Nicolas Guruphat, Hugo Torres
     </footer>
+    </body>
 </html>
