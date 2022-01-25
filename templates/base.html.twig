@@ -19,6 +19,8 @@
     {% endblock %}
 
     {% block body %}
+        {% block nav %}
+        {% endblock %}
         <h1>Body</h1>
         {% block content %}
 
@@ -32,7 +34,7 @@
    bottom:0px;
    z-index:1;
    width:100%;">
-        Blog réalisé par : Nicolas Guruphat, Hugo Torres
+        Blog réalisé par : Nicolas Guruphat, Hugo Torres - réalisé dans le cadre du cours de PHP avancé
     </footer>
     </body>
 </html>
