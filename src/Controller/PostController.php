@@ -21,7 +21,7 @@ class PostController extends AbstractController
 
     }
     /**
-    * @Route("/");
+    * @Route("/", name="listPost");
     */
     public function listPost()
     {
