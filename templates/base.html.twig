@@ -14,17 +14,17 @@
         {% endblock %}
     </head>
     <body>
-    <header style="
-    background-color:yellow;
-    ">
-    oui le header
-    </header>
-    <content style="
-    background-color:blue;
-    ">
-        Oscour
-        {% block body %}{% endblock %}
-    </content>
+    {% block header %}
+
+    {% endblock %}
+
+    {% block body %}
+        <h1>Body</h1>
+        {% block content %}
+
+        {% endblock %}
+    {% endblock %}
+    
     <footer style="
    position:fixed;
    text-align:center;

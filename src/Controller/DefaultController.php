@@ -23,7 +23,7 @@ class DefaultController extends AbstractController
     */
     public function listeArticle()
     {
-      return $this->render('article.html.twig', [
+      return $this->render('User/article.html.twig', [
         
     ]);
     }
