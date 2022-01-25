@@ -14,21 +14,27 @@
         {% endblock %}
     </head>
     <body>
-    {% block header %}
-
-    {% endblock %}
-
-    {% block body %}
-        {% block nav %}
-        {% endblock %}
-        <h1>Body</h1>
-        {% block content %}
+        {% block header %}
 
         {% endblock %}
-    {% endblock %}
-    
-    <footer >
-        Blog réalisé par : Nicolas Guruphat, Hugo Torres - réalisé dans le cadre du cours de PHP avancé
-    </footer>
+
+        {% block body %}
+
+            {% block nav %}
+
+            {% endblock %}
+
+            <h1>Body</h1>
+
+            {% block content %}
+
+            {% endblock %}
+
+        {% endblock %}
+        
+        <footer >
+            Blog réalisé par : Nicolas Guruphat, Hugo Torres - réalisé dans le cadre du cours de PHP avancé
+        </footer>
+
     </body>
 </html>

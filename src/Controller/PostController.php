@@ -6,26 +6,26 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ArticleController extends AbstractController  
+class PostController extends AbstractController  
 {
     /**
-     * @Route("/article/{id}",name="article");
+     * @Route("/post/{id}",name="post");
      */
 
-    public function article($id)
+    public function post($id)
     {
       
-      return $this->render('User/article.html.twig', [
+      return $this->render('User/post.html.twig', [
         'id'=>$id,
     ]);
 
     }
     /**
-    * @Route("/");
+    * @Route("/", name="listPost");
     */
-    public function listeArticle()
+    public function listPost()
     {
-      return $this->render('User/listeArticle.html.twig', [
+      return $this->render('User/listPost.html.twig', [
         
     ]);
     }

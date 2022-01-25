@@ -1,18 +1,13 @@
-{% extends "User/articleBase.html.twig" %}
+{% extends "User/postBase.html.twig" %}
 
-{% block header %}
-    <header style="
-    background-color:yellow;
-    ">
-    oui le header
-    </header>
-{% endblock %}
+
 
 {% block content %}
     
-    <div class="article">
+    <div class="post">
         <h1>Titre de l'article {{id}}</h1>
         <p>Contenu de l'article en cours de lecture</p>
         {#TO-DO : query SQL to get data (from id) about this article #}
     </div>
+
 {% endblock %}
