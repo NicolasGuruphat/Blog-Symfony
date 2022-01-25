@@ -9,14 +9,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DefaultController extends AbstractController  
 {
     /**
-    * @Route("/");
+    * @Route("/login");
     */
-    public function index()
+    public function login()
     {
-      return $this->render('base.html.twig', [
+      return $this->render('login.html.twig', [
         
     ]);
 
+    }
+    /**
+    * @Route("/");
+    */
+    public function listeArticle()
+    {
+      return $this->render('article.html.twig', [
+        
+    ]);
     }
 }
 
