@@ -10,9 +10,9 @@ Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
-    .setPublicPath('/build')
+    .setPublicPath('/symfony/build')
     // only needed for CDN's or sub-directory deploy
-    .setManifestKeyPrefix('build/')
+    .setManifestKeyPrefix('symfony/build/')
 
     /*
      * ENTRY CONFIG
@@ -70,6 +70,6 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-;
+    ;
 
 module.exports = Encore.getWebpackConfig();
