@@ -2,3 +2,7 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 # config/routes.yaml
+#article :
+#     path: /article/{titre}
+#     controller: App\Controller\ArticleController::article
+     #config/routes.yaml

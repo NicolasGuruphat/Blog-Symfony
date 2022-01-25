@@ -19,14 +19,6 @@ class DefaultController extends AbstractController
     ]);
 
     }
-    /**
-    * @Route("/");
-    */
-    public function listeArticle()
-    {
-      return $this->render('User/article.html.twig', [
-        
-    ]);
-    }
+
 }
 
