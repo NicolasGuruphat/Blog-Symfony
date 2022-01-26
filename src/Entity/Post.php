@@ -45,12 +45,12 @@ class Post
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=TRUE)
      */
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable", nullable=TRUE)
      */
     private $publishedAt;
 
