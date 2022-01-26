@@ -54,7 +54,6 @@ class CategoryController extends AbstractController
     public function listPostByCategory($categoryId)
     {
         $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
-        // On fait appel à la méthode générique `find` qui permet de SELECT en fonction d'un Id
         $category = $categoryRepository->find($categoryId);
         $listPost  = $category->getPosts();
 

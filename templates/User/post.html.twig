@@ -10,4 +10,14 @@
 		{{post.description}}
 		{#TO-DO : query SQL to get data (from id) about this article #}
 	</div>
-	{{ form(form) }}{% endblock %}
+	{{ form(form) }}
+		<div class="comment">
+			{% for comment in listComment %}
+				<div>
+					<h3>{{comment.username}}</h3>
+					<p>{{comment.content}}</p>
+					<p>{{comment.created_at}}</p>
+				</div>
+			{% endfor %}
+		</div>
+	{% endblock %}

@@ -67,24 +67,28 @@ class PostController extends AbstractController
       ->add('content', TextareaType::class)
       ->add('save', SubmitType::class)
       ->getForm();
+
     $form->handleRequest($request);
+
     if ($form->isSubmitted() && $form->isValid()) {
       $comment = $form->getData();
       $comment->setCreatedAt(new \DateTimeImmutable('@' . strtotime('now')));
       $comment->setPosts($post);
-      $comment->setValid(False);
+      $comment->setValid(True);
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($comment);
       $entityManager->flush();
       $formResponse = "Commentaire ajouté";
     } else {
-      $fromResponse = "Pas de commentaire ajouté";
+      $formResponse = "";
     }
+    $listComment = $post->getComments();
     return $this->render('User/post.html.twig', [
       'post' => $post,
       'listPost' => $listPost,
       'form' => $form->createView(),
-      'formResponse' => $formResponse
+      'formResponse' => $formResponse,
+      'listComment' => $listComment,
     ]);
   }
 
