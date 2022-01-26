@@ -11,9 +11,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PostController extends AbstractController
 {
 
+  /**
+   * @Route("/post/create", name="post.create")
+   */
+  public function create(): Response
+  {
+    // On crée un nouveau objet Post
+    $post = new \App\Entity\Post();
+    $post->setTitle('Premier article');
+    $post->setContent('Mon contenu');
+    $post->setDescription("Ma description");
+    $post->setSlug('premier-article');
+    $post->setCreatedAt(new \DateTimeImmutable('@' . strtotime('now')));
+    $post->setUpdatedAt(new \DateTimeImmutable('@' . strtotime('now')));
+    $post->setPublishedAt(new \DateTimeImmutable('@' . strtotime('now')));
+    // On récupère le manager des entities
+    $entityManager = $this->getDoctrine()->getManager();
+
+    // On dit à Doctrine que l'on veut sauvegarder le Post
+    // (Pas encore de requête faite en base)
+    $entityManager->persist($post);
+
+    // La/les requêtes sont exécutées (i.e. la requête INSERT) 
+    $entityManager->flush();
+
+    return $this->render('User/post.html.twig', [
+      'post' => $post,
+    ]);
+  }
 
   /**
-   * @Route("/post/{id}",name="show");
+   * @Route("/show/{id}",name="show");
    */
 
   public function show($id)
@@ -22,7 +50,7 @@ class PostController extends AbstractController
     $postRepository = $this->getDoctrine()->getRepository(Post::class);
     // On fait appel à la méthode générique `find` qui permet de SELECT en fonction d'un Id
     $post = $postRepository->find($id);
-
+    $listPost = $postRepository->findAll();
     if (!$post) {
       throw $this->createNotFoundException(
         "Pas de Post trouvé avec l'id " . $id
@@ -31,18 +59,28 @@ class PostController extends AbstractController
 
     return $this->render('User/post.html.twig', [
       'post' => $post,
+      'listPost' => $listPost,
     ]);
-
-    /*return $this->render('User/post.html.twig', [
-      'id' => $id,
-    ]);*/
   }
+
 
   /**
    * @Route("/posts", name="listPost");
    */
   public function listPost()
   {
-    return $this->render('User/listPost.html.twig', []);
+    $postRepository = $this->getDoctrine()->getRepository(Post::class);
+    // On fait appel à la méthode générique `find` qui permet de SELECT en fonction d'un Id
+    $listPost = $postRepository->findAll();
+    if (!$listPost) {
+      throw $this->createNotFoundException(
+        "Pas de Post trouvé"
+      );
+    }
+
+    return $this->render('User/listPost.html.twig', [
+
+      'listPost' => $listPost,
+    ]);
   }
 }

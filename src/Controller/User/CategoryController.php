@@ -2,9 +2,10 @@
 
 namespace App\Controller\User;
 
+use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class CategoryController extends AbstractController
 {
@@ -13,6 +14,10 @@ class CategoryController extends AbstractController
      */
     public function index()
     {
-        return $this->render('User/category.html.twig', []);
+        $postRepository = $this->getDoctrine()->getRepository(Post::class);
+        $listPost = $postRepository->findAll();
+        return $this->render('User/category.html.twig', [
+            'listPost' => $listPost,
+        ]);
     }
 }
