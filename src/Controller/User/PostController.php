@@ -3,9 +3,14 @@
 namespace App\Controller\User;
 
 use App\Entity\Post;
+use App\Entity\Comment;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PostController extends AbstractController
 {
@@ -43,7 +48,7 @@ class PostController extends AbstractController
    * @Route("/show/{id}",name="show");
    */
 
-  public function show($id)
+  public function show($id, Request $request)
   {
     // On récupère le `repository` en rapport avec l'entity `Post` 
     $postRepository = $this->getDoctrine()->getRepository(Post::class);
@@ -55,10 +60,31 @@ class PostController extends AbstractController
         "Pas de Post trouvé avec l'id " . $id
       );
     }
+    $comment = new Comment();
 
+    $form = $this->createFormBuilder($comment)
+      ->add('username', TextType::class)
+      ->add('content', TextareaType::class)
+      ->add('save', SubmitType::class)
+      ->getForm();
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+      $comment = $form->getData();
+      $comment->setCreatedAt(new \DateTimeImmutable('@' . strtotime('now')));
+      $comment->setPosts($post);
+      $comment->setValid(False);
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->persist($comment);
+      $entityManager->flush();
+      $formResponse = "Commentaire ajouté";
+    } else {
+      $fromResponse = "Pas de commentaire ajouté";
+    }
     return $this->render('User/post.html.twig', [
       'post' => $post,
       'listPost' => $listPost,
+      'form' => $form->createView(),
+      'formResponse' => $formResponse
     ]);
   }
 

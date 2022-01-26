@@ -10,7 +10,7 @@
 		<ul
 			class="listPost">
 			{#TO-DO : create a query to generate the list items from Article table#}
-			{% for value in array_slice(listPost,0,5) %}
+			{% for value in listPost %}
 				<li>
 					<a href="{{path('show', { 'id': value.id })}}">
 
