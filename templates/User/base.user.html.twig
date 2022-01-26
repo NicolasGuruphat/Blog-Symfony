@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block header %}
+	<header>
+		oui le header
+		<a href="{{path('category')}}">Liste des catégories</a>
+	</header>
+{% endblock %}
+{% block nav %}
+	<nav>
+		<ul
+			class="listPost">
+			{#TO-DO : create a query to generate the list items from Article table#}
+			{% set array = ["1","2","3","4","5","6","7"] %}
+
+			{#% post ={{path('post.show', {'id' : "1" })}} %#}
+			{% for value in array %}
+				<li>
+					<a href="{{path('post', { 'id': value })}}">Post
+						{{value}}</a>
+				</li>
+			</br>
+		{% endfor %}
+	</ul>
+</nav>{% endblock %}
