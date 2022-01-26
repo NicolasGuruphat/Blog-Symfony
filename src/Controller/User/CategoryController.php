@@ -16,10 +16,14 @@ class CategoryController extends AbstractController
      */
     public function index()
     {
+
+        $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
+        $listCategory = $categoryRepository->findAll();
         $postRepository = $this->getDoctrine()->getRepository(Post::class);
         $listPost = $postRepository->findAll();
         return $this->render('User/category.html.twig', [
             'listPost' => $listPost,
+            'listCategory' => $listCategory,
         ]);
     }
     /**
@@ -29,7 +33,7 @@ class CategoryController extends AbstractController
     {
         // On crée un nouveau objet Post
         $category = new \App\Entity\Category();
-        $category->setName("Category1");
+        $category->setName("Category2");
         // On récupère le manager des entities
         $entityManager = $this->getDoctrine()->getManager();
 

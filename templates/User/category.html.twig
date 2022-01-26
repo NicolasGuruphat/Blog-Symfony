@@ -2,8 +2,11 @@
 {% block content %}
 	<h1>liste des sujets</h1>
 	<ul>
-		{#TO-DO : create a query to generate the list items from Category table#}
-		<li>Category 1</li>
-		<li>Category 2</li>
+		{% for category in listCategory%}
+			<a href="{{path('postByCategory', { 'categoryId': category.id })}}">
+				<li>{{category.name}}</li>
+			</a>
+
+		{% endfor %}
 	</ul>
 {% endblock %}
