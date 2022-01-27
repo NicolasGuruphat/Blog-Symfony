@@ -88,6 +88,7 @@ class CategoryController extends AbstractController
         return $this->render('User/postByCategory.html.twig', [
 
             'listPost' => $listPost,
+            'category' => $category,
             'form' => $form->createView(),
         ]);
     }

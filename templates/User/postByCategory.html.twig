@@ -1,7 +1,7 @@
 {% extends "/User/base.user.html.twig"%}
 
 {% block content %}
-	<h1>Post of this category</h1>
+	<h1>{{category.name}}</h1>
 	<h2>Add a post</h2>
 	{{ form(form)}}
 		<h2>List of post</h2>
