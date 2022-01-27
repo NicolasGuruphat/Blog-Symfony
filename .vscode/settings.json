@@ -12,6 +12,45 @@
             "database": "project",
             "username": "project",
             "password": "project"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "project",
+            "database": "project",
+            "username": "project",
+            "password": "project"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "project",
+            "database": "project",
+            "username": "project",
+            "password": "project"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "project",
+            "database": "project",
+            "username": "project",
+            "password": "project"
         }
     ]
 }

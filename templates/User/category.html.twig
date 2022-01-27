@@ -2,6 +2,7 @@
 {% block content %}
 	<h1>liste des sujets</h1>
 	<ul>
+
 		{% for category in listCategory%}
 			<a href="{{path('postByCategory', { 'categoryId': category.id })}}">
 				<li>{{category.name}}</li>

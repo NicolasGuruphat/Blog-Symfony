@@ -55,7 +55,7 @@ class Post
     private $publishedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="posts")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
      */
     private $comments;
 

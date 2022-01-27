@@ -82,13 +82,13 @@ class PostController extends AbstractController
     } else {
       $formResponse = "";
     }
-    $listComment = $post->getComments();
+    $listComment = $post->getComments($post);
     return $this->render('User/post.html.twig', [
       'post' => $post,
       'listPost' => $listPost,
       'form' => $form->createView(),
       'formResponse' => $formResponse,
-      'listComment' => $listComment,
+      'listComment' => $listComment //->toArray(),
     ]);
   }
 
