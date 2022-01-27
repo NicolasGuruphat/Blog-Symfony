@@ -1,0 +1,15 @@
+{% extends "Admin/base.admin.html.twig" %}
+{% block content %}
+	<h1>Admin Post Control Panel</h1>
+	<h2>Current post</h2>
+	<ul>
+		{% for post in listPost %}
+			<li>
+				<a href="{{path('admin_delete_post', { 'id': post.id })}}">Delete</a>|
+				<a href="{{path('admin_show_post', { 'id': post.id })}}">
+					{{post.title}}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
