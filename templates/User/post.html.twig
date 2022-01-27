@@ -4,11 +4,9 @@
 {% block content %}
 	<h1>{{formResponse}}</h1>
 	<div class="post">
-		<h1>Titre de l'article
-			{{post.title}}</h1>
-		<p>Contenu de l'article en cours de lecture</p>
-		{{post.description}}
-		{#TO-DO : query SQL to get data (from id) about this article #}
+		<h1>{{post.title}}</h1>
+		<h2>{{post.description}}</h2>
+		<p>{{post.content}}</p>
 	</div>
 	{{ form(form) }}
 		<div class="comment">

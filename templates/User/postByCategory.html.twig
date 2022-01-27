@@ -7,7 +7,9 @@
 		<h2>List of post</h2>
 		<ul>
 			{% for post in listPost%}
-				<li>{{post.title}}</li>
+				<a href="{{path('user_post_show', { 'id': post.id })}}">
+					<li>{{post.title}}</li>
+				</a>
 			{% endfor %}
 		</ul>
 	{% endblock %}
