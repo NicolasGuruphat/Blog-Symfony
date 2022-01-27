@@ -47,7 +47,7 @@ class PostController extends AbstractController
         ]);
     }
     /**
-     * @Route("/admin/post/show/{id}", name="admin_show_post")
+     * @Route("/admin/post/show/{id}", name="admin_show_post", methods={"GET", "POST"})
      */
     public function show($id)
     {
