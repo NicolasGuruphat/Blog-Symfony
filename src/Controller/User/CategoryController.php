@@ -33,6 +33,7 @@ class CategoryController extends AbstractController
 
         ]);
     }
+
     /**
      * @Route("/category/create", name="category.create")
      */
@@ -54,6 +55,7 @@ class CategoryController extends AbstractController
             'category' => $category,
         ]);
     }
+
     /**
      * @Route("/category/{categoryId}", name="postByCategory");
      */
@@ -90,6 +92,18 @@ class CategoryController extends AbstractController
             'listPost' => $listPost,
             'category' => $category,
             'form' => $form->createView(),
+        ]);
+    }
+
+    public function showCategories(): Response
+    {
+        /* Get all categories with valid posts attached and show them like :
+        Category_name (number of valid posts)
+        */
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAllPostsNotNull();
+
+        return $this->render('User/base.user.html.twig', [
+            'categories' => $categories,
         ]);
     }
 }

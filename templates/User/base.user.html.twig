@@ -9,15 +9,19 @@
 	<nav>
 		<ul
 			class="listPost">
-			{#TO-DO : create a query to generate the list items from Article table#}
-			{% for value in listPost %}
+			{# {% for value in listPost %}
+																<li>
+																	<a href="{{path('user_post_show', { 'id': value.id })}}">
+												
+																		{{value.title}}</a>
+																</li>
+															</br>
+														{% endfor %} #}
+			{% for category in categories %}
 				<li>
-					<a href="{{path('user_post_show', { 'id': value.id })}}">
-
-						{{value.title}}</a>
+					{{category.name}}
 				</li>
-			</br>
-		{% endfor %}
-	</ul>
-
-</nav>{% endblock %}
+			{% endfor %}
+		</ul>
+	</nav>
+{% endblock %}
