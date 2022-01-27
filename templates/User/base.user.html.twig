@@ -12,7 +12,7 @@
 			{#TO-DO : create a query to generate the list items from Article table#}
 			{% for value in listPost %}
 				<li>
-					<a href="{{path('show', { 'id': value.id })}}">
+					<a href="{{path('user_post_show', { 'id': value.id })}}">
 
 						{{value.title}}</a>
 				</li>

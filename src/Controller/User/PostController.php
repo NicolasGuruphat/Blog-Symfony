@@ -45,9 +45,8 @@ class PostController extends AbstractController
   }
 
   /**
-   * @Route("/show/{id}",name="show");
+   * @Route("/show/{id}",name="user_post_show");
    */
-
   public function show($id, Request $request)
   {
     // On récupère le `repository` en rapport avec l'entity `Post` 
@@ -69,7 +68,6 @@ class PostController extends AbstractController
       ->getForm();
 
     $form->handleRequest($request);
-
     if ($form->isSubmitted() && $form->isValid()) {
       $comment = $form->getData();
       $comment->setCreatedAt(new \DateTimeImmutable('@' . strtotime('now')));
@@ -88,10 +86,10 @@ class PostController extends AbstractController
       'listPost' => $listPost,
       'form' => $form->createView(),
       'formResponse' => $formResponse,
-      'listComment' => $listComment //->toArray(),
+      'listComment' => array_reverse($listComment->toArray())
+
     ]);
   }
-
 
   /**
    * @Route("/posts", name="listPost");
@@ -108,7 +106,6 @@ class PostController extends AbstractController
     }
 
     return $this->render('User/listPost.html.twig', [
-
       'listPost' => $listPost,
     ]);
   }
