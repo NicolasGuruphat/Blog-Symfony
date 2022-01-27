@@ -1,1 +1,5 @@
-{{comment.username}}
+{% extends "Admin/base.admin.html.twig" %}
+{% block content %}
+	<h1>{{comment.username}}</h1>
+	<h2>{{comment.content}}</h2>
+{% endblock %}
