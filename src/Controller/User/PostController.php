@@ -77,6 +77,7 @@ class PostController extends AbstractController
       $entityManager->persist($comment);
       $entityManager->flush();
       $formResponse = "Commentaire ajouté";
+      //return $this->redirectToRoute('succes');
     } else {
       $formResponse = "";
     }

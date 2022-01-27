@@ -1,10 +1,13 @@
 {% extends "/User/base.user.html.twig"%}
 
 {% block content %}
-	<h1>liste des posts pour cette catégorie</h1>
-	<ul>
-		{% for post in listPost%}
-			<li>{{post.title}}</li>
-		{% endfor %}
-	</ul>
-{% endblock %}
+	<h1>Post of this category</h1>
+	<h2>Add a post</h2>
+	{{ form(form)}}
+		<h2>List of post</h2>
+		<ul>
+			{% for post in listPost%}
+				<li>{{post.title}}</li>
+			{% endfor %}
+		</ul>
+	{% endblock %}
