@@ -5,8 +5,9 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-
-
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 
 class CategoryController extends AbstractController
 {
@@ -19,9 +20,39 @@ class CategoryController extends AbstractController
         $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
         $listCategory = $categoryRepository->findAll();
 
-        return $this->render('Admin/category.admin.html.twig', [
+        return $this->render('Admin/allCategory.admin.html.twig', [
             'listCategory' => $listCategory,
+        ]);
+    }
+    /**
+     * @Route("/admin/category/show/{id}", name="admin_show_category")
+     */
+    public function show($id, Request $request)
+    {
+        $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
+        $category = $categoryRepository->find($id);
+        if (!$category) {
+            throw $this->createNotFoundException(
+                "Pas de category trouvé avec l'id " . $id
+            );
+        }
+        $newCategory = new Category();
+        $form = $this->createFormBuilder($newCategory)
+            ->add('name', TextType::class)
+            ->add('Valider', SubmitType::class)
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newCategory = $form->getData();
+            $category->setName($newCategory->getName());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($category);
+            $entityManager->flush();
+        }
 
+        return $this->render('Admin/category.admin.html.twig', [
+            'category' => $category,
+            'form' => $form->createView(),
         ]);
     }
     /**

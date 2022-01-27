@@ -69,6 +69,7 @@ class CategoryController extends AbstractController
             ->add('Valider', SubmitType::class)
             ->getForm();
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $post = $form->getData();
             $post->setCreatedAt(new \DateTimeImmutable('@' . strtotime('now')));
