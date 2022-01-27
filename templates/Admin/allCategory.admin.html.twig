@@ -1,8 +1,11 @@
 {% extends "Admin/base.admin.html.twig" %}
 {% block content %}
-	{% for category in listCategory %}
-		<a href="{{path('admin_show_category', { 'id': category.id })}}">
-			{{category.name}}
-		</a>
-	{% endfor %}
-{% endblock %}
+	{{form(form)}}
+		<ul>
+			{% for category in listCategory %}
+				<a href="{{path('admin_show_category', { 'id': category.id })}}">
+					<li>{{category.name}}</li>
+				</a>
+			{% endfor %}
+		</ul>
+	{% endblock %}

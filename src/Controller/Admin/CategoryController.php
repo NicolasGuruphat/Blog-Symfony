@@ -14,14 +14,28 @@ class CategoryController extends AbstractController
     /**
      * @Route("/admin/category", name="admin_category")
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
         $listCategory = $categoryRepository->findAll();
+        $category = new Category();
+        $form = $this->createFormBuilder($category)
+            ->add('name', TextType::class)
+            ->add('Valider', SubmitType::class)
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $category = $form->getData();
+            $category->setName($category->getName());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($category);
+            $entityManager->flush();
+        }
 
         return $this->render('Admin/allCategory.admin.html.twig', [
             'listCategory' => $listCategory,
+            'form' => $form->createView(),
         ]);
     }
     /**
