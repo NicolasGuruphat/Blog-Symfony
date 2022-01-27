@@ -45,12 +45,12 @@ class Post
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime", nullable=TRUE)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="datetime_immutable", nullable=TRUE)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $publishedAt;
 
@@ -147,12 +147,12 @@ class Post
         return $this;
     }
 
-    public function getPublishedAt(): ?\DateTimeImmutable
+    public function getPublishedAt(): ?\DateTimeInterface
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTimeImmutable $publishedAt): self
+    public function setPublishedAt(\DateTimeInterface $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
 
@@ -171,7 +171,7 @@ class Post
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
-            $comment->setPosts($this);
+            $comment->setPost($this);
         }
 
         return $this;
@@ -181,8 +181,8 @@ class Post
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
-            if ($comment->getPosts() === $this) {
-                $comment->setPosts(null);
+            if ($comment->getPost() === $this) {
+                $comment->setPost(null);
             }
         }
 
