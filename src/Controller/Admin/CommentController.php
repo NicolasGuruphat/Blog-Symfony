@@ -19,7 +19,7 @@ class CommentController extends AbstractController
 
         $commentRepository = $this->getDoctrine()->getRepository(Comment::class);
         $listComment = $commentRepository->findAll();
-        return $this->render('Admin/allComment.admin.html.twig', [
+        return $this->render('Admin/Comment/allComment.admin.html.twig', [
             'listComment' => $listComment,
         ]);
     }
@@ -36,7 +36,7 @@ class CommentController extends AbstractController
             );
         }
 
-        return $this->render('Admin/comment.admin.html.twig', [
+        return $this->render('Admin/Comment/comment.admin.html.twig', [
             'comment' => $comment,
         ]);
     }
