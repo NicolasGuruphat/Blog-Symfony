@@ -17,7 +17,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category", name="category")
+     * @Route("/", name="category")
      */
     public function index()
     {
