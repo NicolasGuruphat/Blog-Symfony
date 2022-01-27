@@ -3,6 +3,7 @@
 	<header>
 		oui le header
 		<a href="{{path('category')}}">Liste des catégories</a>
+		<a href="{{path('admin')}}">Admin</a>
 	</header>
 {% endblock %}
 {% block nav %}
@@ -10,13 +11,13 @@
 		<ul
 			class="listPost">
 			{# {% for value in listPost %}
-																<li>
-																	<a href="{{path('user_post_show', { 'id': value.id })}}">
-												
-																		{{value.title}}</a>
-																</li>
-															</br>
-														{% endfor %} #}
+																			<li>
+																				<a href="{{path('user_post_show', { 'id': value.id })}}">
+															
+																					{{value.title}}</a>
+																			</li>
+																		</br>
+																	{% endfor %} #}
 			{% for category in categories %}
 				<li>
 					{{category.name}}
