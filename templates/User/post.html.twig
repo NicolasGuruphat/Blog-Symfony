@@ -12,15 +12,12 @@
 	</div>
 	{{ form(form) }}
 		<div class="comment">
-
-
 			{% for comment in listComment %}
 				<div>
 					<h3>{{comment.username}}</h3>
 					<p>{{comment.content}}</p>
-					<p>{#{comment.created_at}#}</p>
+					<p>{{comment.createdAt|date("m/d/Y")}}</p>
 				</div>
 			{% endfor %}#}
-
 		</div>
 	{% endblock %}
