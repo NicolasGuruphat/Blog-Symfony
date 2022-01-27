@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
@@ -23,8 +24,8 @@ class PostController extends AbstractController
         $post = new Post();
         $form = $this->createFormBuilder($post)
             ->add('title', TextType::class)
-            ->add('description', TextType::class)
-            ->add('content', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('content', TextareaType::class)
             ->add('Valider', SubmitType::class)
             ->getForm();
         $form->handleRequest($request);
