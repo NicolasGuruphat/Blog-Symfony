@@ -14,11 +14,11 @@
 		<div class="comment">
 
 
-			{% for comment in post.comments %}
+			{% for comment in listComment %}
 				<div>
 					<h3>{{comment.username}}</h3>
 					<p>{{comment.content}}</p>
-					<p>{{comment.created_at}}</p>
+					<p>{#{comment.created_at}#}</p>
 				</div>
 			{% endfor %}#}
 

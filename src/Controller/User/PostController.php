@@ -39,7 +39,7 @@ class PostController extends AbstractController
     // La/les requêtes sont exécutées (i.e. la requête INSERT) 
     $entityManager->flush();
 
-    return $this->render('User/post.html.twig', [
+    return $this->render('User/createPost.html.twig', [
       'post' => $post,
     ]);
   }
@@ -73,7 +73,7 @@ class PostController extends AbstractController
     if ($form->isSubmitted() && $form->isValid()) {
       $comment = $form->getData();
       $comment->setCreatedAt(new \DateTimeImmutable('@' . strtotime('now')));
-      $comment->setPosts($post);
+      $comment->setPost($post);
       $comment->setValid(True);
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($comment);
