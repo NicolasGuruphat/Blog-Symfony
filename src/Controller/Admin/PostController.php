@@ -41,13 +41,13 @@ class PostController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->render('Admin/allPost.admin.html.twig', [
+        return $this->render('Admin/Post/allPost.admin.html.twig', [
             'listPost' => $listPost,
             'form' => $form->createView(),
         ]);
     }
     /**
-     * @Route("/admin/post/show/{id}", name="admin_show_post")
+     * @Route("/admin/post/show/{id}", name="admin_show_post", methods={"GET", "POST"})
      */
     public function show($id)
     {
@@ -59,7 +59,7 @@ class PostController extends AbstractController
             );
         }
 
-        return $this->render('Admin/post.admin.html.twig', [
+        return $this->render('Admin/Post/post.admin.html.twig', [
             'post' => $post,
         ]);
     }

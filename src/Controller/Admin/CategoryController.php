@@ -33,7 +33,7 @@ class CategoryController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->render('Admin/allCategory.admin.html.twig', [
+        return $this->render('Admin/Category/allCategory.admin.html.twig', [
             'listCategory' => $listCategory,
             'form' => $form->createView(),
         ]);
@@ -64,7 +64,7 @@ class CategoryController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->render('Admin/category.admin.html.twig', [
+        return $this->render('Admin/Category/category.admin.html.twig', [
             'category' => $category,
             'form' => $form->createView(),
         ]);
