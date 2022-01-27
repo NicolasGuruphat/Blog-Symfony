@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 
 class CategoryController extends AbstractController
@@ -71,11 +71,13 @@ class CategoryController extends AbstractController
             ->add('Valider', SubmitType::class)
             ->getForm();
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $post = $form->getData();
             $post->setCreatedAt(new \DateTimeImmutable('@' . strtotime('now')));
             $post->addCategory($category);
-            $post->setSlug($post->getTitle());
+            $slugger = new AsciiSlugger();
+            $post->setSlug($slugger->slug($post->getTitle()));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();

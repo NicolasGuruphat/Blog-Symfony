@@ -1,0 +1,14 @@
+{% extends "Admin/base.admin.html.twig" %}
+{% block content %}
+	<h1>Admin Category Control Panel</h1>
+	<h2>Create a new category</h2>
+	{{form(form)}}
+		<h2>Current categories</h2>
+		<ul>
+			{% for category in listCategory %}
+				<a href="{{path('admin_show_category', { 'id': category.id })}}">
+					<li>{{category.name}}</li>
+				</a>
+			{% endfor %}
+		</ul>
+	{% endblock %}
