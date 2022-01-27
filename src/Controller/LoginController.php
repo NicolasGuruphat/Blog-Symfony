@@ -29,7 +29,6 @@ class LoginController extends AbstractController
             if ($password_check == hash('sha512', $login->getPassword())) {
                 return $this->redirectToRoute('category');
             }
-            // return $this->redirectToRoute('succes');
         }
 
         // Getting the user from the database
@@ -41,7 +40,7 @@ class LoginController extends AbstractController
     }
 
     /**
-     * @Route("/tamerelachienne", name="succes")
+     * @Route("/loginsuccessful", name="succes")
      */
     public function succes(): Response
     {
