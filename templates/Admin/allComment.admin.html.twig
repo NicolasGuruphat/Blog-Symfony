@@ -1,0 +1,16 @@
+{% extends "Admin/base.admin.html.twig" %}
+{% block content %}
+	<h1>Admin Comment Control Panel</h1>
+	<h2>Current comments</h2>
+	<ul>
+		{% for comment in listComment %}
+			<a href="{{path('admin_show_comment', { 'id': comment.id })}}">
+				<li>username :
+					{{comment.username}}
+					content :
+					{{comment.content}}
+				</li>
+			</a>
+		{% endfor %}
+	</ul>
+{% endblock %}
