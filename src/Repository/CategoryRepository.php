@@ -35,4 +35,30 @@ class CategoryRepository extends ServiceEntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     * @return int
+     */
+    public function findPostsCount(int $categoryId): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        // $query = $entityManager->createQuery(
+        //     'SELECT count(p)
+        //     FROM App\Entity\Post p
+        //     WHERE p.categories in 
+        //     (select c
+        //     FROM App\Entity\Category c
+        //     WHERE c.id = :id)'
+        // )->setParameter('id', $categoryId);
+
+        $query = $entityManager->createQuery(
+            'SELECT count(p)
+            FROM App\Entity\Post p
+            JOIN p.categories c
+            WHERE p.id = :id'
+        )->setParameter('id', $categoryId);
+
+        return $query->getResult();
+    }
 }

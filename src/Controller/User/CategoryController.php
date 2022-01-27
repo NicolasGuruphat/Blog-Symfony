@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Illuminate\Support\Arr;
 
 
 class CategoryController extends AbstractController
@@ -103,9 +104,14 @@ class CategoryController extends AbstractController
         Category_name (number of valid posts)
         */
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAllPostsNotNull();
+        $arr = [];
+        $category = $categories[0];
+        $postCount = $this->getDoctrine()->getRepository(Category::class)->findPostsCount($category->getId());
+        $i = implode(",", $postCount);
+        echo $i;
 
         return $this->render('User/base.user.html.twig', [
-            'categories' => $categories,
+            'postNumber' => $arr,
         ]);
     }
 }

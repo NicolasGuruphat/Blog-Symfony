@@ -8,20 +8,14 @@
 {% block nav %}
 	<nav>
 		<ul
-			class="listPost">
-			{# {% for value in listPost %}
-																<li>
-																	<a href="{{path('user_post_show', { 'id': value.id })}}">
-												
-																		{{value.title}}</a>
-																</li>
-															</br>
-														{% endfor %} #}
-			{% for category in categories %}
-				<li>
-					{{category.name}}
-				</li>
-			{% endfor %}
+			class="listPost">{# {% for value in listPost %}
+																																			<li>
+																																				<a href="{{path('user_post_show', { 'id': value.id })}}">
+																															
+																																					{{value.title}}</a>
+																																			</li>
+																																		</br>
+																																	{% endfor %} #}
 		</ul>
 	</nav>
 {% endblock %}
