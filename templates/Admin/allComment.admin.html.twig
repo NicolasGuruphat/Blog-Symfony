@@ -4,13 +4,17 @@
 	<h2>Current comments</h2>
 	<ul>
 		{% for comment in listComment %}
-			<a href="{{path('admin_show_comment', { 'id': comment.id })}}">
-				<li>username :
+
+			<li>
+				<a href="{{path('admin_delete_comment', { 'id': comment.id })}}">Delete</a>
+				<a href="{{path('admin_validate_comment', { 'id': comment.id })}}">Validate</a>
+				<a href="{{path('admin_show_comment', { 'id': comment.id })}}">username :
 					{{comment.username}}
 					content :
 					{{comment.content}}
-				</li>
-			</a>
+				</a>
+			</li>
+
 		{% endfor %}
 	</ul>
 {% endblock %}

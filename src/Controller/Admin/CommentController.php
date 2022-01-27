@@ -19,8 +19,6 @@ class CommentController extends AbstractController
 
         $commentRepository = $this->getDoctrine()->getRepository(Comment::class);
         $listComment = $commentRepository->findAll();
-
-
         return $this->render('Admin/allComment.admin.html.twig', [
             'listComment' => $listComment,
         ]);
@@ -41,5 +39,28 @@ class CommentController extends AbstractController
         return $this->render('Admin/comment.admin.html.twig', [
             'comment' => $comment,
         ]);
+    }
+    /**
+     * @Route("/admin/comment/delete/{id}", name="admin_delete_comment")
+     */
+    public function delete($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $commentRepository = $this->getDoctrine()->getRepository(Comment::class);
+        $entityManager->remove($commentRepository->find($id));
+        $entityManager->flush();
+        return $this->redirectToRoute('admin_comment');
+    }
+    /**
+     * @Route("/admin/comment/validate/{id}", name="admin_validate_comment")
+     */
+    public function validate($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $commentRepository = $this->getDoctrine()->getRepository(Comment::class);
+        $comment = $commentRepository->find($id);
+        $comment->setValid(True);
+        $entityManager->flush();
+        return $this->redirectToRoute('admin_comment');
     }
 }
