@@ -63,4 +63,16 @@ class CommentController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('admin_comment');
     }
+    /**
+     * @Route("/admin/comment/unvalidate/{id}", name="admin_unvalidate_comment")
+     */
+    public function unvalidate($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $commentRepository = $this->getDoctrine()->getRepository(Comment::class);
+        $comment = $commentRepository->find($id);
+        $comment->setValid(False);
+        $entityManager->flush();
+        return $this->redirectToRoute('admin_comment');
+    }
 }

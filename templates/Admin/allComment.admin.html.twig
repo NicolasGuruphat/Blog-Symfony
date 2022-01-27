@@ -1,20 +1,37 @@
 {% extends "Admin/base.admin.html.twig" %}
 {% block content %}
 	<h1>Admin Comment Control Panel</h1>
-	<h2>Current comments</h2>
+	<h2>Current unvalid comments</h2>
 	<ul>
 		{% for comment in listComment %}
+			{% if not comment.getValid()%}
+				<li>
+					<a href="{{path('admin_delete_comment', { 'id': comment.id })}}">Delete</a>|
+					<a href="{{path('admin_validate_comment', { 'id': comment.id })}}">Validate</a>|
+					<a href="{{path('admin_show_comment', { 'id': comment.id })}}">username :
+						{{comment.username}}
+						content :
+						{{comment.content}}
+					</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
 
-			<li>
-				<a href="{{path('admin_delete_comment', { 'id': comment.id })}}">Delete</a>
-				<a href="{{path('admin_validate_comment', { 'id': comment.id })}}">Validate</a>
-				<a href="{{path('admin_show_comment', { 'id': comment.id })}}">username :
-					{{comment.username}}
-					content :
-					{{comment.content}}
-				</a>
-			</li>
-
+	<h2>Current valid comments</h2>
+	<ul>
+		{% for comment in listComment %}
+			{% if comment.getValid()%}
+				<li>
+					<a href="{{path('admin_delete_comment', { 'id': comment.id })}}">Delete</a>|
+					<a href="{{path('admin_unvalidate_comment', { 'id': comment.id })}}">Unvalidate</a>|
+					<a href="{{path('admin_show_comment', { 'id': comment.id })}}">username :
+						{{comment.username}}
+						content :
+						{{comment.content}}
+					</a>
+				</li>
+			{% endif %}
 		{% endfor %}
 	</ul>
 {% endblock %}
