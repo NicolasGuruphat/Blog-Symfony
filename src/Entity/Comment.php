@@ -101,13 +101,6 @@ class Comment
         return $this->post;
     }
 
-    public function setPosts(?Post $post): self
-    {
-        $this->post = $post;
-
-        return $this;
-    }
-
     public function setPost(?Post $post): self
     {
         $this->post = $post;
